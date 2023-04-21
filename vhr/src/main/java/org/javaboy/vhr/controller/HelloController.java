@@ -14,4 +14,15 @@ public class HelloController {
         System.out.printf("/hello");
         return "hello  you have in";
     }
+
+    @GetMapping("/employee/basic/hello")
+    public String hello2(){
+        System.out.println("basic/hello");
+        return "/employee/basic/hello";
+    }
+    @GetMapping("/employee/advanced/hello")
+    public String hello3(){
+        System.out.println("advanced/hello");
+        return "/employee/advanced/hello";
+    }
 }

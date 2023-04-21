@@ -48,7 +48,6 @@ export function postKeyValueRequest(url:string,params:any){
             for(let i in data){
                 ret+=encodeURIComponent(i)+'='+encodeURIComponent(data[i])+'&';
             }
-            console.log(ret);
             return ret;
         }],
         headers: {

@@ -9,12 +9,15 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getRequest } from '@/utils/api'
 import { useRouter } from 'vue-router';
 import { useStore } from '@/store';
+//import { computed } from 'vue';
 const store=useStore();
-const routes=store.menuRoutes;
-console.log("home页的store-menuRoutes",routes)
+//重要代码，如果不加。则会：在store初始化前渲染完成，导致首次登陆看不到目录项
+//（因为initMenu完成前就展示了页面了）
+const routes=store.menuRoutes;//把beforeEach强制为同步了，可用了。不需要computed了
+//const routes=computed(()=>store.menuRoutes);//必须使用computed写法，不然首次进入出问题（进入时store未加载完成）
+const router=useRouter();//用于页面跳转（退出登陆）
+//console.log('Home页所得的router',router.getRoutes())
 const user=JSON.parse(window.sessionStorage.getItem("user")||'{}');
-const router=useRouter();
-console.log("home页的router：",router);
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -86,7 +89,7 @@ const handleCommand = (command: string | number | object) => {
                   <template #title>
                     {{ item.name }}
                   </template>
-                  <el-menu-item :index="child.path" v-for="(child,indexj) in item.children">{{ child.name }}</el-menu-item>
+                  <el-menu-item :index="child.path.toString()" v-for="(child,indexj) in item.children">{{ child.name }}</el-menu-item>
                 </el-sub-menu>
               <!-- </template> -->
               <!-- v-for,v-if不能同时用，本想内层v-if 发现template无法包裹？（且在template上v-if仍会有空白项）
@@ -102,6 +105,14 @@ const handleCommand = (command: string | number | object) => {
         </el-aside>
         
         <el-main>
+          <el-breadcrumb separator-class="el-icon-arrow-right" v-show="router.currentRoute.value.path!='/home'">
+            <!-- v-if和v-show:v-if是完全不存在元素(DOM中不存在),而v-show仅仅是隐藏(DOM中仍可见) -->
+            <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item >{{ router.currentRoute.value.name}}</el-breadcrumb-item>
+          </el-breadcrumb>
+          <div class="homeWelcomeCls" v-if="router.currentRoute.value.path=='/home'">
+            欢迎来到微人事系统
+          </div>
           <RouterView />
         </el-main>
       </el-container>
@@ -120,6 +131,7 @@ const handleCommand = (command: string | number | object) => {
 .homeHeader.title{
   font-size: 30px;
   font-family: 华文行楷;
+  /* 字体在mac上不生效 */
   color:#ffffff;
 }
 .el-dropdown-link img{
@@ -130,5 +142,13 @@ const handleCommand = (command: string | number | object) => {
 }.el-dropdown-link{
   display: flex;
   align-items: center;
+}
+.homeWelcomeCls{
+  text-align: center;
+  font-size: 30px;
+  font-family: 华文行楷;
+  /* 字体在mac上不生效 */
+  color: #409eff;
+  padding-top: 50px;
 }
 </style>

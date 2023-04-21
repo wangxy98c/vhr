@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//系统动态配置功能
 @RestController//相当于@ResponseBody和@Controller的结合
 @RequestMapping("/system/config")//接受所有类型请求
 public class SystemConfigController {

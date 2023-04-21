@@ -3,8 +3,12 @@ import { reactive,ref} from 'vue';
 import type {FormInstance, FormRules} from 'element-plus'
 import {postKeyValueRequest} from '../utils/api'
 import { useRouter } from 'vue-router';
-import {initMenu} from '../utils/menu'
+import { useRoute } from 'vue-router';
+import { initMenu } from '@/utils/menu';
+import { useStore } from '@/store';
 const router=useRouter();
+const route=useRoute();
+const store=useStore()
 const labelPos=ref('left')
 const loginFromRef=ref<FormInstance>()//表单实例，并在标签中ref使用，且submit提交时作为参数
 const userdata=reactive({
@@ -32,11 +36,11 @@ const submitLogin=async(formEl:FormInstance|undefined)=>{
                     //最初的responce返回体data中的.obj才是user信息。data已经在拦截器中过滤出来了
                     window.sessionStorage.setItem("user",JSON.stringify(resp.obj));
                     //console.log("LOGIN页：",window.sessionStorage.getItem("user"));
-                    
+                    const path=route.query.redirect;//它不能写在上边并用computed。
+                    //console.log("请求路径",path);
                     //initMenu(router,store);不宜在此处初始化菜单，因为可能使用刷新，导致home页没菜单了
-                    //也不宜在home页面初始化，因为可能不在home页面刷新。   路由导航守卫
-                    console.log("login页router：",router);
-                    router.replace('/home');//页面跳转
+                    //也不宜在home页面初始化，因为可能不在home页面刷新。   使用路由导航守卫
+                    router.replace((path=='/'||path==undefined)?'/home':path);//页面跳转
                 }
             })
         }else{
