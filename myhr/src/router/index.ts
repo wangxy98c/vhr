@@ -27,7 +27,7 @@ const router = createRouter({
     //       component: ()=>import('../views/sys/SysCfg.vue')
     //     }
     //   ]
-    // },
+    // },//即使加上也不是home页下的sysCfg，而是一个单独的页面
   ]
 })
 

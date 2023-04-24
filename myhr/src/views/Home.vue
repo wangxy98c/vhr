@@ -9,6 +9,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getRequest } from '@/utils/api'
 import { useRouter } from 'vue-router';
 import { useStore } from '@/store';
+console.log("home页的开始启用")
 //import { computed } from 'vue';
 const store=useStore();
 //重要代码，如果不加。则会：在store初始化前渲染完成，导致首次登陆看不到目录项
@@ -113,13 +114,17 @@ const handleCommand = (command: string | number | object) => {
           <div class="homeWelcomeCls" v-if="router.currentRoute.value.path=='/home'">
             欢迎来到微人事系统
           </div>
-          <RouterView />
+          
+          <RouterView class="homeRouterViewCls"/>
         </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 <style scoped>
+.homeRouterViewCls{
+  margin-top: 10px;
+}
 .homeHeader{
   background-color: #409eff;
   display: flex;

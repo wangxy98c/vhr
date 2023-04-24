@@ -3,7 +3,7 @@ package org.javaboy.vhr.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.javaboy.vhr.model.Hr;
 import org.javaboy.vhr.model.RespBean;
-import org.javaboy.vhr.server.HrService;
+import org.javaboy.vhr.service.HrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

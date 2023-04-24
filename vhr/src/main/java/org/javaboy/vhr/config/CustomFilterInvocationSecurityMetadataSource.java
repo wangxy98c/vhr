@@ -2,7 +2,7 @@ package org.javaboy.vhr.config;
 
 import org.javaboy.vhr.model.Menu;
 import org.javaboy.vhr.model.Role;
-import org.javaboy.vhr.server.MenuService;
+import org.javaboy.vhr.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -42,7 +42,7 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
                 return SecurityConfig.createList(str);
             }
         }
-        System.out.println("没匹配上");
+        //System.out.println("没匹配上");
         //没匹配上（不知道什么路径，可能是数据库中没记录的页面），登陆即可访问
         return SecurityConfig.createList("ROLE_LOGIN");//"R_L"只是一个标记，后续进行处理
     }

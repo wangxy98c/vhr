@@ -1,4 +1,4 @@
-package org.javaboy.vhr.server;
+package org.javaboy.vhr.service;
 
 import org.javaboy.vhr.mapper.HrMapper;
 import org.javaboy.vhr.model.Hr;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+//权限访问控制，结合CustomFilterInvocationSecurityMetadataSource类
 @Component
 public class CustomUrlDecisionManager implements AccessDecisionManager {
     @Override
@@ -20,10 +21,10 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
             String needRole = configAttribute.getAttribute();//拿到'请求地址'所需要的角色
             if("ROLE_LOGIN".equals(needRole)){
                 if(authentication instanceof AnonymousAuthenticationToken){
-                    System.out.println("--没登陆");
+                    //System.out.println("--没登陆");
                     throw new AccessDeniedException("尚未登陆，请登录");
                 }else{
-                    System.out.println("--登陆就行");
+                    //System.out.println("--登陆就行");
                     return;//登陆了，不用管，访问就行
                 }
             }
