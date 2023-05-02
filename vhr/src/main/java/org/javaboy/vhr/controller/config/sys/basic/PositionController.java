@@ -2,9 +2,8 @@ package org.javaboy.vhr.controller.config.sys.basic;
 
 import org.javaboy.vhr.model.Position;
 import org.javaboy.vhr.model.RespBean;
-import org.javaboy.vhr.service.config.sys.basic.PositionService;
+import org.javaboy.vhr.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +32,7 @@ public class PositionController {
             return RespBean.error("添加失败");
         }
     }
+    //注意事项：学习只更新一部分的xml方法（前端不用传输全部的数据，只需要给出更新部分）
     @PutMapping("/")
     public RespBean updatePositions(@RequestBody Position position){
         if(positionService.updatePosition(position)==1){
@@ -49,6 +49,17 @@ public class PositionController {
             return RespBean.ok("删除成功");
         }else{
             return  RespBean.error(("删除失败"));
+        }
+    }
+
+    //注意事项： 学习如何数组形式地使用xml
+    @DeleteMapping("/")
+    public RespBean deletePositionByIds(Integer[] ids){
+        //数据用
+        if(positionService.deletePositionByIds(ids)==ids.length){
+            return RespBean.ok("批量删除成功");
+        }else {
+            return RespBean.error("批量删除失败");
         }
     }
 }

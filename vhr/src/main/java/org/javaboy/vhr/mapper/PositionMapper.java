@@ -20,5 +20,6 @@ public interface PositionMapper {
 
     List<Position> getAllPositions();
 
+    //注意事项：此处的@Param("ids") 注解，用于对应xml中的ids
     Integer deletePositionsByIds(@Param("ids") Integer[] ids);
 }

@@ -45,7 +45,7 @@
 <!-- template内部只能有一个div -->
 <script setup lang="ts">
 import { deleteRequest, getRequest, postRequest, putRequest } from '@/utils/api';
-import {Plus, Search} from '@element-plus/icons-vue'
+import {Plus, Search} from '@element-plus/icons-vue'//图标引入
 import { ElMessage } from 'element-plus';
 import { reactive } from 'vue';
 import { ref,onMounted } from 'vue';
@@ -87,7 +87,7 @@ const addPosition=()=>{
 }
 const handleDelete = (index,row) => {
   ElMessageBox.confirm(
-    '您真的要删除此条信息吗？此操作不可撤回，请谨慎操作',
+    '您真的要删除此「职位」吗？此操作不可撤回，请谨慎操作',
     `要删除「${row.name}」吗`,
     {
       confirmButtonText: '必须删了',
@@ -122,6 +122,5 @@ const doEditPos=()=>{
         initPositions()
     })
 }
-
-//const tableData=reactive({})
+//功能：多选删除和是否启动没做。
 </script>

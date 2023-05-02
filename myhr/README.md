@@ -22,19 +22,15 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
-
 ```sh
 npm install
 ```
-
 ### Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
-
 ### Type-Check, Compile and Minify for Production
-
 ```sh
 npm run build
 ```
@@ -50,3 +46,8 @@ npm run build
         将数据库中第一级的‘员工资料’改成‘员工信息即可’
 ## 尚未解决：直接从地址栏处访问子页面，会出现空白页。“No match found for location with path "/emp/basic”
     原因：没有路由，但没想到怎么解决
+## vue3中关于数据的更新
+    不能直接更新，ref需要使用.value 进行更新，否则相当于改变了指针。丢失了链接性
+###  组件中使用v-for。导致ref获得不到应得的实例。从而使得组件的方法不可用
+    由于v-for的存在，使得const treeRef = ref<InstanceType<typeof ElTree>>()实际上是一个数组。
+    那么就不能直接调用方法。使用方法时，应treeRef.value[id].func();来调用。即获得数组里的元素再调用方法

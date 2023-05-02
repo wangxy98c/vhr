@@ -1,6 +1,7 @@
 //封装axios，使得具有统一的请求返回样式
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import router from '@/router';
 //单独引用（不在vue文件中，不能直接用）
 
 //响应拦截器
@@ -24,7 +25,8 @@ axios.interceptors.response.use(function (response) {
     }else if(error.response.status==403){
         ElMessage.error('权限不足');
     }else if(error.response.status==401){
-        ElMessage.error('尚未登陆，请登陆后操作');
+        router.replace('/');
+        ElMessage.error('尚未登陆，请登陆后操作-qt');
     }else{
         if(error.response.data.msg){
             console.log("msg:");

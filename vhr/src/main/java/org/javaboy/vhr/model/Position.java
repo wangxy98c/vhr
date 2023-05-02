@@ -33,7 +33,7 @@ public class Position implements Serializable {
     }
 
     private String name;
-
+    //注意事项：日期格式处理
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
     private Date createDate;
 

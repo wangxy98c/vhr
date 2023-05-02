@@ -124,10 +124,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 
                         response.setContentType("application/json;charset=utf-8");
+                        response.setStatus(401);
                         PrintWriter out= response.getWriter();
                         RespBean respBean=RespBean.error("访问失败!");
                         if(exception instanceof InsufficientAuthenticationException){//失败类型可以从findusage中看同级的异常
-                            respBean.setMsg("尚未登陆，请登录后再访问");
+                            respBean.setMsg("尚未登陆，请登录后再访问-ht");
                         }
                         String s = new ObjectMapper().writeValueAsString(respBean);
                         out.write(s);

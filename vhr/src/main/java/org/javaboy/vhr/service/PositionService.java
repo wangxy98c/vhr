@@ -1,4 +1,4 @@
-package org.javaboy.vhr.service.config.sys.basic;
+package org.javaboy.vhr.service;
 
 import org.javaboy.vhr.mapper.PositionMapper;
 import org.javaboy.vhr.model.Position;
@@ -33,5 +33,9 @@ public class PositionService
     public int updatePosition(Position position){
         return positionMapper.updateByPrimaryKeySelective(position);
         //xxxSelective是根据传进来的字段更新而不是全部数据更新,如果数据为空就不会更新此字段
+    }
+
+    public int deletePositionByIds(Integer[] ids) {
+        return positionMapper.deletePositionsByIds(ids);
     }
 }
