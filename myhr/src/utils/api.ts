@@ -8,13 +8,13 @@ import router from '@/router';
 axios.interceptors.response.use(function (response) {
     // 2xx (http的) 范围内的状态码都会触发该函数,对响应数据做点什么
     //但注意，这个2XX不是后端设置的ok，error里的那个码。postman下面的status200 OK
-    if(response.status && response.status==200 && response.data.status==500){
+    if(response!.status && response!.status==200 && response!.data!.status==500){
         //data.status 是后端的码.500是业务错误
         ElMessage.error(response.data.msg);//把后端错误信息展示出来
         return;
     }
-    if(response.data.msg){
-        ElMessage.success(response.data.msg);
+    if(response.data!.msg){
+        ElMessage.success(response.data!.msg);
     }
     //下面也可以写成功的提醒，此处省略
     return response.data;//此处有data，其他地方可能不需要.data了
@@ -29,7 +29,6 @@ axios.interceptors.response.use(function (response) {
         ElMessage.error('尚未登陆，请登陆后操作-qt');
     }else{
         if(error.response.data.msg){
-            console.log("msg:");
             ElMessage.error(error.response.data.msg);
         }else{
             ElMessage.error('未知错误');

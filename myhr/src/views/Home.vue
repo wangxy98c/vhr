@@ -14,7 +14,7 @@ console.log("home页的开始启用")
 const store=useStore();
 //重要代码，如果不加。则会：在store初始化前渲染完成，导致首次登陆看不到目录项
 //（因为initMenu完成前就展示了页面了）
-const routes=store.menuRoutes;//把beforeEach强制为同步了，可用了。不需要computed了
+const routes=store.menuRoutes;//把beforeEach强制为同步运行了，可用了。不需要computed了
 //const routes=computed(()=>store.menuRoutes);//必须使用computed写法，不然首次进入出问题（进入时store未加载完成）
 const router=useRouter();//用于页面跳转（退出登陆）
 //console.log('Home页所得的router',router.getRoutes())
