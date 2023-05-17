@@ -37,10 +37,13 @@ npm run build
 ### 子页可访问后，但No match found for location with path "/emp/basic"
     原因：有两个name：‘员工资料’，在导入时只会有一个生效（router不允许name值重复，后覆盖前？）
         将数据库中第一级的‘员工资料’改成‘员工信息即可’
-## 尚未解决：直接从地址栏处访问子页面，会出现空白页。“No match found for location with path "/emp/basic”
-    原因：没有路由，但没想到怎么解决
+### 直接从地址栏处访问子页面，会出现空白页。“No match found for location with path "/emp/basic”
+    原因：没有路由
+    强行让 菜单初始化以后 再挂在mount('#app').
 ## vue3中关于数据的更新
     不能直接更新，ref需要使用.value 进行更新，否则相当于改变了指针。丢失了链接性
 ###  组件中使用v-for。导致ref获得不到应得的实例。从而使得组件的方法不可用
     由于v-for的存在，使得const treeRef = ref<InstanceType<typeof ElTree>>()实际上是一个数组。
     那么就不能直接调用方法。使用方法时，应treeRef.value[id].func();来调用。即获得数组里的元素再调用方法
+## 未解决：跨源读取阻止(CORB)功能阻止了 MIME 类型为 text/html 的跨源响应
+    头像使用了网络上的图片，请求被阻止。

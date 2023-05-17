@@ -9,7 +9,6 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getRequest } from '@/utils/api'
 import { useRouter } from 'vue-router';
 import { useStore } from '@/store';
-console.log("home页的开始启用")
 //import { computed } from 'vue';
 const store=useStore();
 //重要代码，如果不加。则会：在store初始化前渲染完成，导致首次登陆看不到目录项

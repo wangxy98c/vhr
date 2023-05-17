@@ -9,7 +9,6 @@ import { useStore } from './store'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App)
-app.use(router)
 app.use(ElementPlus)
 app.use(createPinia())
 const store=useStore();
@@ -21,11 +20,13 @@ router.beforeResolve( async(to,from)=>{
         return true;
     }else{
         if(window.sessionStorage.getItem("user")){
+            //console.log("用户信息-------->",window.sessionStorage.getItem("user"));
             //用户登陆过了（为了防止没登陆就直接去其他页面）
-            console.log("将要去的地址：",to.path)
+            //console.log("将要去的地址：",to.path)
             await initMenu(router,store)//需要注意initMenu的写法。async function为了实现同步
             //不用同步的也可以，home页里的routes使用computed。使其动态更新
-            console.log("router已经放行")
+            //console.log("router已经放行")
+            
             return true;
         }
         else{
@@ -37,20 +38,12 @@ router.beforeResolve( async(to,from)=>{
         
     }
 })
-// router.beforeEach((to, from, next) => {
-//     if (to.path == '/') {
-//         next();
-//     } else {
-//         if (window.sessionStorage.getItem("user")) {
-//             initMenu(router, store);
-//             if(store.menuRoutes.length>0){
-//                 next();
-//             }else{
-//                 next({...to,replace:true});//不断得回到login页，但现在好像不能用了
-//             }
-//         } else {
-//             next('/?redirect=' + to.path);
-//         }
-//     }
-// })
-app.mount('#app')
+//解决了刷新页面由于路由未加载的而导致的空白页问题。但感觉不好，以后找更好的办法
+async function call() {
+    await initMenu(router,store);
+    //强行让挂载等待我们的路由初始化完成
+    app.use(router);
+    app.mount('#app');
+}
+call();
+

@@ -6,6 +6,8 @@ import router from '@/router';
 
 //响应拦截器
 axios.interceptors.response.use(function (response) {
+    //console.log("·······axios拦截器······")
+    if(!response) return
     // 2xx (http的) 范围内的状态码都会触发该函数,对响应数据做点什么
     //但注意，这个2XX不是后端设置的ok，error里的那个码。postman下面的status200 OK
     if(response!.status && response!.status==200 && response!.data!.status==500){
@@ -13,6 +15,7 @@ axios.interceptors.response.use(function (response) {
         ElMessage.error(response.data.msg);//把后端错误信息展示出来
         return;
     }
+    //console.log("response:",response.status,"responseData:",response.data);
     if(response.data!.msg){
         ElMessage.success(response.data!.msg);
     }

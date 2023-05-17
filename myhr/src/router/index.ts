@@ -17,17 +17,17 @@ const router = createRouter({
       name: 'Home',
       component:Home,
     },
-    // {
-    //   path: '/home',
-    //   name: '系统管理',
-    //   children:[
-    //     {
-    //       path: '/sys/cfg',
-    //       name: '系统管理',
-    //       component: ()=>import('../views/sys/SysCfg.vue')
-    //     }
-    //   ]
-    // },//即使加上也不是home页下的sysCfg，而是一个单独的页面
+    {
+      path: '/home',
+      name: '系统管理',
+      children:[
+        {
+          path: '/sys/cfg',
+          name: '系统管理',
+          component: ()=>import('../views/sys/SysCfg.vue')
+        }
+      ]
+    },//即使加上也不是home页下的sysCfg，而是一个单独的页面
   ]
 })
 

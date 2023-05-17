@@ -5,12 +5,12 @@ import { useStore } from "@/store";
 
 
 export async function initMenu(router,store){
-    console.log("进入了initMenu函数")
+    //console.log("进入了initMenu函数")
     if(store.menuRoutes.length>0){
-        console.log("已经有store存在，不需要再次store")
+        //console.log("已经有store存在，不需要再次store")
         return true;
     }else{
-        console.log("store为空，需要初始化,并开始请求")
+        //console.log("store为空，需要初始化,并开始请求")
         await getRequest('/system/config/menu','').then(data=>{
             if(data){
                 //参考route配置，需要把component项的值变为对象（其他字段的参数本来就是字串）
@@ -28,7 +28,7 @@ export async function initMenu(router,store){
 
                 })
                 store.initMenuStore(fmtRoutes);
-                console.log("动态菜单store、router刚刚加载完成");
+                //console.log("动态菜单store、router刚刚加载完成");
                 //console.log('initMenu中的router：',router.getRoutes())
             }
         })
