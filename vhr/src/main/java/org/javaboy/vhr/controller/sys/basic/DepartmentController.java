@@ -1,4 +1,4 @@
-package org.javaboy.vhr.controller.config.sys.basic;
+package org.javaboy.vhr.controller.sys.basic;
 
 import org.javaboy.vhr.model.Department;
 import org.javaboy.vhr.model.RespBean;
