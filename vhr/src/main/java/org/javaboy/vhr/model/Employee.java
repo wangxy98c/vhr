@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Employee implements Serializable {
+public class Employee implements Serializable {//Serializable用于邮件系统序列化
     private Integer id;
 
     private String name;

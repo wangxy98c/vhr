@@ -14,3 +14,10 @@
     不能一起完成则回退
 ### 引入poi实现数据的导入导出功能
     代码属于EmpBasic页面
+### 使用RabbitMQ启用邮件服务
+    1。使用Thyleaf模版
+    2。mailReceiver
+    3。添加员工后调用
+### 组件回填：添加员工后把生成的id填入原本没有id的参数中
+    xml文件中：
+    useGenerateKeys="true"  keyProperty="id"

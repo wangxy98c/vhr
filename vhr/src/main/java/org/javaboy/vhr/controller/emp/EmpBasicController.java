@@ -26,6 +26,13 @@ public class EmpBasicController {
         //设置默认的参数，用于没有参数的时候
         return employeeService.getEmployeByPage(page,size);
     }
+    @PostMapping("/")
+    public RespBean addEmp(@RequestBody Employee employee){
+        if(employeeService.addEmp(employee)==1){
+            return RespBean.ok("添加成功");
+        }
+        return RespBean.error("添加失败");
+    }
     //注意：导出
     @GetMapping("/export")
     public ResponseEntity<byte[]> exportData(){
