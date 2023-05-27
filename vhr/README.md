@@ -21,3 +21,5 @@
 ### 组件回填：添加员工后把生成的id填入原本没有id的参数中
     xml文件中：
     useGenerateKeys="true"  keyProperty="id"
+### 日期格式
+    JsonFormat(pattern="yyyy-mm-dd) private Date date;

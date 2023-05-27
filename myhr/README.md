@@ -47,3 +47,7 @@ npm run build
     那么就不能直接调用方法。使用方法时，应treeRef.value[id].func();来调用。即获得数组里的元素再调用方法
 ## 未解决：跨源读取阻止(CORB)功能阻止了 MIME 类型为 text/html 的跨源响应
     头像使用了网络上的图片，请求被阻止。
+### 关于v-for循环v-model绑定变量
+    `v-model="stepmsg.salary[key]" `  
+    即可绑定   stepmsg.salary:{name:'',basic:0, } 
+    等价于 v-model="salary.name"  v-model="...."  可参见 `SalSob.uve`
