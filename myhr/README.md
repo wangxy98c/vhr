@@ -48,6 +48,14 @@ npm run build
 ## 未解决：跨源读取阻止(CORB)功能阻止了 MIME 类型为 text/html 的跨源响应
     头像使用了网络上的图片，请求被阻止。
 ### 关于v-for循环v-model绑定变量
-    `v-model="stepmsg.salary[key]" `  
-    即可绑定   stepmsg.salary:{name:'',basic:0, } 
+    v-model="stepmsg.salary[key]"
+    即可绑定   stepmsg.salary:{name:'test',basic:0, } 
     等价于 v-model="salary.name"  v-model="...."  可参见 `SalSob.uve`
+
+    实际上：可用对象的字段名访问该字段信息（类似map）， 如stepmsg.salary[name] 即'test' 。故而stepmsg.salary[key]即key对应下的字段值
+    但似乎只能用于template内，不能用于script
+### vue插槽
+    <slot :name=""> name是vue保留的一个属性。不作为props传递
+    <template #header="xxx">     </template> 是拿到子组件的信息xxx
+    <template #header      > xxx </template>  是把xxx给插槽用      ####参见SalSobCfg中有同时使用以上两种
+    当然也有 动态插槽 <tempate #[dynamicSlotName] >

@@ -34,10 +34,11 @@
                             v-show="stepmsg.tablemsgs[index].show==stepmsg.stepcnt"
                         >
                             <span>{{ stepmsg.tablemsgs[index].name }}</span>
+                            <span>>>>>>测试：(name:{{ stepmsg.salary["name"] }}---动态的key:{{ stepmsg.salary[key] }}  )</span>
                             <el-input
                                 v-model="stepmsg.salary[key]"
                                 class="w-50 m-2"
-                            >{{ key }}</el-input>
+                            ></el-input>
                         </el-row>
                     </div>
                 </div>
@@ -109,17 +110,17 @@ const stepmsg=reactive({
         }
     ],
     salary:{
-        basicSalary: 0,
-        trafficSalary: 0,
-        lunchSalary: 0,
-        bonus: 0,
-        pensionPer: 0,
-        pensionBase: 0,
-        medicalPer: 0,
-        medicalBase: 0,
-        accumulationFundPer: 0,
-        accumulationFundBase: 0,
-        name: ''
+        basicSalary: 10000,
+        trafficSalary: 300,
+        lunchSalary: 800,
+        bonus: 6000,
+        pensionPer: 20,
+        pensionBase: 3000,
+        medicalPer: 30,
+        medicalBase: 3000,
+        accumulationFundPer: 15,
+        accumulationFundBase: 6000,
+        name: 'testname'
     }
 })
 const tableData=ref([])
