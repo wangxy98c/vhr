@@ -45,8 +45,6 @@ npm run build
 ###  组件中使用v-for。导致ref获得不到应得的实例。从而使得组件的方法不可用
     由于v-for的存在，使得const treeRef = ref<InstanceType<typeof ElTree>>()实际上是一个数组。
     那么就不能直接调用方法。使用方法时，应treeRef.value[id].func();来调用。即获得数组里的元素再调用方法
-## 未解决：跨源读取阻止(CORB)功能阻止了 MIME 类型为 text/html 的跨源响应
-    头像使用了网络上的图片，请求被阻止。
 ### 关于v-for循环v-model绑定变量
     v-model="stepmsg.salary[key]"
     即可绑定   stepmsg.salary:{name:'test',basic:0, } 
@@ -59,3 +57,19 @@ npm run build
     <template #header="xxx">     </template> 是拿到子组件的信息xxx
     <template #header      > xxx </template>  是把xxx给插槽用      ####参见SalSobCfg中有同时使用以上两种
     当然也有 动态插槽 <tempate #[dynamicSlotName] >
+### 关于ts使用socket
+    https://blog.csdn.net/qq_51553982/article/details/128273861
+    另外注意，import SockJS from 'sockjs-client/dist/sockjs.min.js';而不是直接的sockjs（会报错）
+## 一个疑问：一个关于map是引用还是拷贝的问题
+    index.ts 中 
+    let s='string'
+    ms=this.sessions[s];//注意，ms和session[]不指向同一对象了?非引用，在ms上push后session不会变化
+    if(ms==null){
+        this.sessions[s]=[]
+    }
+    this.sessions[s].push({
+        content:msg.content,
+        data:new Date(),
+        self:!msg.notSelf
+    })
+    如果对ms.push 则this.session[s] 不会变化

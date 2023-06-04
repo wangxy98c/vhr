@@ -23,3 +23,5 @@
     useGenerateKeys="true"  keyProperty="id"
 ### 日期格式
     JsonFormat(pattern="yyyy-mm-dd) private Date date;
+### websocket
+    WScontroller、WebSocketConfig、以及相应的model

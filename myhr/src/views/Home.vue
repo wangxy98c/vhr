@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
+import {ChatDotRound} from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getRequest } from '@/utils/api'
 import { useRouter } from 'vue-router';
@@ -57,6 +52,9 @@ const handleCommand = (command: string | number | object) => {
 //   //index即标记(可以直接设置为路径)，indexpath即从父到此的路径数组
 //   router.push(index);
 // }
+const clickChat=()=>{
+  router.replace('/chat')
+}
 </script>
 
 <template>
@@ -64,19 +62,23 @@ const handleCommand = (command: string | number | object) => {
     <el-container>
       <el-header class="homeHeader">
         <div class="homeHeader title">微人事</div>
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link">
-            {{user.name}}
-            <img :src="user.userface"/>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
-              <el-dropdown-item command="setting">设置</el-dropdown-item>
-              <el-dropdown-item command="logout" divided>注销登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
+        <div>
+          <el-button :icon="ChatDotRound" class="chatButtonCls" text @click="clickChat"></el-button>
+          <el-dropdown @command="handleCommand" style="margin-left: 5px;">
+            <span class="el-dropdown-link">
+              {{user.name}}
+              <img :src="user.userface"/>
+            </span>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
+                <el-dropdown-item command="setting">设置</el-dropdown-item>
+                <el-dropdown-item command="logout" divided>注销登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+        </div>
+        
       </el-header>
 
       <el-container>
@@ -114,7 +116,7 @@ const handleCommand = (command: string | number | object) => {
             欢迎来到微人事系统
           </div>
           
-          <RouterView class="homeRouterViewCls"/>
+          <RouterView style="margin-top: 20px;"/>
         </el-main>
       </el-container>
     </el-container>
@@ -122,7 +124,7 @@ const handleCommand = (command: string | number | object) => {
 </template>
 <style scoped>
 .homeRouterViewCls{
-  margin-top: 10px;
+  margin-top: 20px;
 }
 .homeHeader{
   background-color: #409eff;
@@ -154,5 +156,15 @@ const handleCommand = (command: string | number | object) => {
   /* 字体在mac上不生效 */
   color: #409eff;
   padding-top: 50px;
+}
+.chatButtonCls{
+  background-color: #409eff;
+  border-width: 0px;
+  padding: 0px;
+  height: fit-content;
+}
+.chatButtonCls:hover{
+  background-color: #409eff;
+  color: pink;
 }
 </style>

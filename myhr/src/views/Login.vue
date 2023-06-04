@@ -4,7 +4,6 @@ import type {FormInstance, FormRules} from 'element-plus'
 import {postKeyValueRequest} from '../utils/api'
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
-import { initMenu } from '@/utils/menu';
 import { useStore } from '@/store';
 const router=useRouter();
 const route=useRoute();

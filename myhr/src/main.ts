@@ -5,13 +5,16 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import {createPinia} from 'pinia'
 import { initMenu} from './utils/menu'
-import { useStore } from './store'
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import { useStore,usechatstore} from './store'
 
 const app = createApp(App)
 app.use(ElementPlus)
 app.use(createPinia())
 const store=useStore();
+const chatStore=usechatstore()
+chatStore.$subscribe((mutation, state) => {
+    localStorage.setItem('vue-chat-session', JSON.stringify(state.sessions))
+})
 
 
 //router.beforeResolve 是获取数据或执行任何其他操作的理想位置。(但暂没发现与beforeEach的区别)
