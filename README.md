@@ -15,3 +15,4 @@ https://github.com/lenve/vhr
 
 需要自行使用docker部署RabbitMq。
 docker-image 为：   rabbitmq:3-management
+(docker run -d --hostname my-rabbit --name my-rabbit -p 15672:15672 rabbitmq:3-management)
