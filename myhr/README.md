@@ -60,16 +60,3 @@ npm run build
 ### 关于ts使用socket
     https://blog.csdn.net/qq_51553982/article/details/128273861
     另外注意，import SockJS from 'sockjs-client/dist/sockjs.min.js';而不是直接的sockjs（会报错）
-## 一个疑问：一个关于map是引用还是拷贝的问题
-    index.ts 中 
-    let s='string'
-    ms=this.sessions[s];//注意，ms和session[]不指向同一对象了?非引用，在ms上push后session不会变化
-    if(ms==null){
-        this.sessions[s]=[]
-    }
-    this.sessions[s].push({
-        content:msg.content,
-        data:new Date(),
-        self:!msg.notSelf
-    })
-    如果对ms.push 则this.session[s] 不会变化
