@@ -45,7 +45,7 @@ npm run build
 ###  组件中使用v-for。导致ref获得不到应得的实例。从而使得组件的方法不可用
     由于v-for的存在，使得const treeRef = ref<InstanceType<typeof ElTree>>()实际上是一个数组。
     那么就不能直接调用方法。使用方法时，应treeRef.value[id].func();来调用。即获得数组里的元素再调用方法
-### 关于v-for循环v-model绑定变量
+### 关于v-for循环v-model绑定变量.(拿到map的key值？)
     v-model="stepmsg.salary[key]"
     即可绑定   stepmsg.salary:{name:'test',basic:0, } 
     等价于 v-model="salary.name"  v-model="...."  可参见 `SalSob.uve`
