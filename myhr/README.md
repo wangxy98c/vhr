@@ -60,3 +60,5 @@ npm run build
 ### 关于ts使用socket
     https://blog.csdn.net/qq_51553982/article/details/128273861
     另外注意，import SockJS from 'sockjs-client/dist/sockjs.min.js';而不是直接的sockjs（会报错）
+### 自定义指令
+    message.vue中vScrollbottom
